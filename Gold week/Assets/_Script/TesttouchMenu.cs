@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Testtouch : MonoBehaviour
+public class TesttouchMenu : MonoBehaviour
 {
-    public static Testtouch game;
-    public Image barHumain;
-    public Image barNature;
-    public Image visuBarHumain;
-    public Image visuBarNature;
+    public static TesttouchMenu game;
+
     List<Transform> collision = new List<Transform>(5);
     List<Transform> toRemove = new List<Transform>();
     Vector2 touchPos;
@@ -18,35 +16,10 @@ public class Testtouch : MonoBehaviour
     public Transform player2;
     CardManager manager2;
 
-    private float maxNature;
-    public float nature;
-    private float maxHumain;
-    public float humain;
-    public float visuHumain;
-    public float visuNature;
-
-    private bool isTimerCard;
-    private float timerCard;
-    public float tempsPLay;
-
-    private bool inZoneHauteNature;
-    private bool inZoneHauteHumain;
-    private bool inZoneBasseNature;
-    private bool inZoneBasseHumain;
-    private bool inZoneMediumNature;
-    private bool inZoneMediumHumain;
-
-    public Text text;
 
     private void Awake()
     {
         game = this;
-        maxNature = nature;
-        maxHumain = humain;
-        nature = 0;
-        humain = 0;
-        visuNature = 0;
-        visuHumain = 0;
     }
 
 
@@ -60,12 +33,6 @@ public class Testtouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateCard();
-        barHumain.fillAmount = (humain+maxHumain) / (maxHumain*2);
-        visuBarHumain.fillAmount = (visuHumain+maxHumain) / (maxHumain*2);
-        barNature.fillAmount = (nature + maxNature) / (maxNature * 2);
-        visuBarNature.fillAmount = (visuNature + maxNature) / (maxNature * 2);
-
 
         if (Input.touchCount > 0)
         {
@@ -82,20 +49,12 @@ public class Testtouch : MonoBehaviour
                                  collision.Insert(i, Physics2D.OverlapPoint(touchPos).transform);
                                  if (collision[i].tag == "P1")
                                  {
-                                    if (collision[i].position.y < 2)
-                                    {
-                                    collision[i].GetComponent<Card>().PlayVisuNeg();
-                                    }
                                     manager1.noHand.Remove(collision[i]);
                                     manager1.noHand.Add(collision[i]);
                                     manager1.hand.Remove(collision[i]);
                                  }
                                  else if (collision[i].tag == "P2")
                                  {
-                                    if (collision[i].position.y > -2)
-                                    {
-                                        collision[i].GetComponent<Card>().PlayVisuNeg();
-                                    }
                                     manager2.noHand.Remove(collision[i]);
                                     manager2.noHand.Add(collision[i]);
                                     manager2.hand.Remove(collision[i]);
@@ -143,7 +102,6 @@ public class Testtouch : MonoBehaviour
                                 {
                                     if (collision[i].position.y < 2)
                                     {
-                                        collision[i].GetComponent<Card>().PlayVisuPos();
                                     }
                                     else if (manager1.hand.Count != 0)
                                     {
@@ -188,7 +146,6 @@ public class Testtouch : MonoBehaviour
                                 {
                                     if (collision[i].position.y > -2)
                                     {
-                                        collision[i].GetComponent<Card>().PlayVisuPos();
                                     }
                                     else if (manager2.hand.Count != 0)
                                     {
@@ -235,7 +192,7 @@ public class Testtouch : MonoBehaviour
                                 toRemove.Add(collision[i]);
                         }
                             break;
-
+                        
                     }
                 
             }
@@ -248,101 +205,15 @@ public class Testtouch : MonoBehaviour
 
     }
 
-    public void PlayCard()
+    public void Play()
     {
-        isTimerCard = true;
-        timerCard = tempsPLay;
-    }
-
-    public void RemoveCard(Transform collider,bool ispreview)
-    {
-        int index = collision.IndexOf(collider);
-        if (index >= 0)
+        if (manager1.noHand.Count == 1 && manager2.noHand.Count == 1)
         {
-            if (ispreview)
-            {
-                collider.GetComponent<Card>().PlayVisuPos();
-            }
-            collision[index] = null;
+            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Play && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Play)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Quit)
+                Application.Quit();
         }
     }
 
-    private void UpdateCard()
-    {
-        if (isTimerCard && timerCard <0)
-        {
-            manager1.PlayCard();
-            manager2.PlayCard();
-            isTimerCard = false;
-            CalculVictory();
-            text.text = "Play";
-        }
-        else if(isTimerCard)
-        {
-            timerCard-=Time.deltaTime;
-            text.text = timerCard.ToString();
-        }
-    }
-
-
-
-
-    private void CalculVictory()
-    {
-        if (nature > 5)
-        {
-            if (inZoneHauteNature)
-                ;//victoire nature
-            else
-                inZoneHauteNature = true;
-        }
-        else if (nature > -4)
-        {
-            inZoneHauteNature = false;
-            inZoneMediumNature = false;
-            inZoneBasseNature = false;
-        }
-        else if (nature > -6)
-        {
-            if (inZoneMediumNature)
-                ;//victoire humain
-            else
-                inZoneMediumNature = true;
-        }
-        else
-        {
-            if (inZoneBasseNature)
-                ;//defaite all
-            else
-                inZoneBasseNature = true;
-        }
-
-        if (nature > 4)
-        {
-            if (inZoneHauteHumain)
-                ;//victoire humain
-            else
-                inZoneHauteHumain = true;
-        }
-        else if (nature > -4)
-        {
-            inZoneHauteHumain = false;
-            inZoneMediumHumain = false;
-            inZoneBasseHumain = false;
-        }
-        else if (nature > -6)
-        {
-            if (inZoneMediumHumain)
-                ;//victoire nature
-            else
-                inZoneMediumHumain = true;
-        }
-        else
-        {
-            if (inZoneBasseHumain)
-                ;//defaite all
-            else
-                inZoneBasseHumain = true;
-        }
-    }
 }

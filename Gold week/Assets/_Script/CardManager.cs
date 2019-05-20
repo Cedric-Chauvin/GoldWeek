@@ -131,12 +131,18 @@ public class CardManager : MonoBehaviour
         {
             foreach (var item in noHand)
             {
-                hand.Add(item);
                 if(transform.name == "P1")
                 {
                     if (item.transform.position.y < 2)
                     {
                         item.GetComponent<Card>().PlayVisuNeg();
+                        Testtouch.game.RemoveCard(item, true);
+                        hand.Add(item);
+                    }
+                    else
+                    {
+                        Testtouch.game.RemoveCard(item, false);
+                        hand.Add(item);
                     }
                 }
                 else
@@ -144,20 +150,28 @@ public class CardManager : MonoBehaviour
                     if (item.transform.position.y > -2)
                     {
                         item.GetComponent<Card>().PlayVisuNeg();
+                        Testtouch.game.RemoveCard(item, true);
+                        hand.Add(item);
+                    }
+                    else
+                    {
+                        Testtouch.game.RemoveCard(item, false);
+                        hand.Add(item);
                     }
                 }
             }
             noHand.Clear();
             int random = Random.Range(0, hand.Count);
             hand[random].GetComponent<Card>().PlayCard();
+            Testtouch.game.RemoveCard(hand[random],false);
             Destroy(hand[random].gameObject);
             hand.RemoveAt(random);
-
         }
         else
         {
             list[0].GetComponent<Card>().PlayVisuNeg();
             list[0].GetComponent<Card>().PlayCard();
+            Testtouch.game.RemoveCard(list[0],true);
             Destroy(list[0].gameObject);
             noHand.Remove(list[0]);
         }
@@ -170,4 +184,5 @@ public class CardManager : MonoBehaviour
         }
 
     }
+
 }
