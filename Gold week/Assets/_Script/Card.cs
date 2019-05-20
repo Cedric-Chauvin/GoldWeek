@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    public enum CARDTYPE
+    {
+        NORMAL,
+        SHIELD,
+        HEAL
+    }
+
+    public CARDTYPE type;
     public Sprite petit;
     public Sprite grand;
     public int nature;
@@ -12,6 +20,7 @@ public class Card : MonoBehaviour
     private bool visuPos;
     private bool visuNeg;
     private bool change;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,9 +72,24 @@ public class Card : MonoBehaviour
 
     public void PlayCard()
     {
-        Testtouch.game.humain += humain;
-        Testtouch.game.nature += nature;
-        Testtouch.game.visuHumain += humain;
-        Testtouch.game.visuNature += nature;
+        switch (type)
+        {
+            case CARDTYPE.NORMAL:
+                Testtouch.game.ChangeBar(nature, humain);
+
+                break;
+
+            case CARDTYPE.SHIELD:
+                Testtouch.game.ApplyShield(transform.tag);
+
+                break;
+
+            case CARDTYPE.HEAL:
+                Testtouch.game.ApplyHeal(transform.tag);
+                break;
+            default:
+                break;
+        }
+
     }
 }

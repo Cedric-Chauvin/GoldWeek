@@ -209,9 +209,9 @@ public class TesttouchMenu : MonoBehaviour
     {
         if (manager1.noHand.Count == 1 && manager2.noHand.Count == 1)
         {
-            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Play && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Play)
+            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Play && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Play)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.CARDTYPE.Quit)
+            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit)
                 Application.Quit();
         }
     }

@@ -5,6 +5,26 @@ using UnityEngine.UI;
 
 public class Testtouch : MonoBehaviour
 {
+    enum SHIELDSTATE
+    {
+        NONE,
+        WAIT,
+        SHIELD
+    }
+
+    enum HEALSTATE
+    {
+        NONE,
+        WAIT,
+        T2,
+        T3,
+        T4
+    }
+
+    SHIELDSTATE shielNature;
+    SHIELDSTATE shielHumain;
+    HEALSTATE healNature;
+    HEALSTATE healHumain;
     public static Testtouch game;
     public Image barHumain;
     public Image barNature;
@@ -276,6 +296,22 @@ public class Testtouch : MonoBehaviour
             isTimerCard = false;
             CalculVictory();
             text.text = "Play";
+            if(shielHumain != SHIELDSTATE.NONE)
+                shielHumain++;
+            if (shielNature != SHIELDSTATE.NONE)
+                shielNature++;
+            if (healHumain != HEALSTATE.NONE)
+            {
+                healHumain++;
+                if (healHumain != HEALSTATE.WAIT)
+                    humain++;
+            }
+            if (healNature != HEALSTATE.NONE)
+            {
+                healNature++;
+                if (healNature != HEALSTATE.WAIT)
+                    nature++;
+            }
         }
         else if(isTimerCard)
         {
@@ -345,4 +381,36 @@ public class Testtouch : MonoBehaviour
                 inZoneBasseHumain = true;
         }
     }
+
+    public void ApplyShield(string tag)
+    {
+        if (tag == "P1")
+            shielNature = SHIELDSTATE.WAIT;
+        else
+            shielHumain = SHIELDSTATE.WAIT;
+    }
+
+    public void ApplyHeal(string tag)
+    {
+        if (tag == "P1")
+            healNature = HEALSTATE.WAIT;
+        else
+            healNature = HEALSTATE.WAIT;
+    }
+
+
+    public void ChangeBar(int natureValue,int humainValue)
+    {
+        if (shielHumain != SHIELDSTATE.SHIELD || humainValue > 0)
+        {
+            humain += humainValue;
+            visuHumain += humainValue;
+        }
+        if (shielNature != SHIELDSTATE.SHIELD || natureValue >0)
+        {
+            nature += natureValue;
+            visuNature += natureValue;
+        }
+    }
+
 }

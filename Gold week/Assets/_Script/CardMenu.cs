@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardMenu : MonoBehaviour
 {
     public float speed;
-    public CARDTYPE type;
+    public MENUCARDTYPE type;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class CardMenu : MonoBehaviour
 
     }
 
-   public enum CARDTYPE
+   public enum MENUCARDTYPE
     {
         Play,
         Quit,
