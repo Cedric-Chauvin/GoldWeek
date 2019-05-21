@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public float y = 4;
     public int nbCardInHand = 5;
     public List<Transform> hand;
     public List<Transform> noHand;

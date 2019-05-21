@@ -21,10 +21,20 @@ public class Testtouch : MonoBehaviour
         T4
     }
 
-    SHIELDSTATE shielNature;
-    SHIELDSTATE shielHumain;
-    HEALSTATE healNature;
-    HEALSTATE healHumain;
+    enum BARSTATE
+    {
+        NONE,
+        HAUTE,
+        MEDIUM,
+        BASSE
+    }
+
+    SHIELDSTATE shielNature = SHIELDSTATE.NONE;
+    SHIELDSTATE shielHumain = SHIELDSTATE.NONE;
+    HEALSTATE healNature = HEALSTATE.NONE;
+    HEALSTATE healHumain = HEALSTATE.NONE;
+    BARSTATE natureState = BARSTATE.NONE;
+    BARSTATE humainState = BARSTATE.NONE;
     public static Testtouch game;
     public Image barHumain;
     public Image barNature;
@@ -49,12 +59,6 @@ public class Testtouch : MonoBehaviour
     private float timerCard;
     public float tempsPLay;
 
-    private bool inZoneHauteNature;
-    private bool inZoneHauteHumain;
-    private bool inZoneBasseNature;
-    private bool inZoneBasseHumain;
-    private bool inZoneMediumNature;
-    private bool inZoneMediumHumain;
 
     public Text text;
 
@@ -75,6 +79,7 @@ public class Testtouch : MonoBehaviour
     {
         manager1 = player1.GetComponent<CardManager>();
         manager2 = player2.GetComponent<CardManager>();
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._pioche);
     }
 
     // Update is called once per frame
@@ -158,6 +163,8 @@ public class Testtouch : MonoBehaviour
                                 float min2 = 100;
                                 int jmin1 = 0;
                                 int jmin2 = 0;
+
+                                SoundControler._soundControler.PlaySound(SoundControler._soundControler._poseCard);
 
                                 if (collision[i].tag == "P1")
                                 {
@@ -298,19 +305,33 @@ public class Testtouch : MonoBehaviour
             text.text = "Play";
             if(shielHumain != SHIELDSTATE.NONE)
                 shielHumain++;
+            if (shielHumain == (SHIELDSTATE)3)
+                shielHumain = SHIELDSTATE.NONE;
             if (shielNature != SHIELDSTATE.NONE)
                 shielNature++;
+            if (shielNature == (SHIELDSTATE)3)
+                shielNature = SHIELDSTATE.NONE;
             if (healHumain != HEALSTATE.NONE)
             {
-                healHumain++;
                 if (healHumain != HEALSTATE.WAIT)
+                {
                     humain++;
+                    visuHumain++;
+                }
+                healHumain++;
+                if (healHumain == (HEALSTATE)5)
+                    healHumain = HEALSTATE.NONE;
             }
             if (healNature != HEALSTATE.NONE)
             {
-                healNature++;
                 if (healNature != HEALSTATE.WAIT)
+                {
                     nature++;
+                    visuNature++;
+                }
+                healNature++;
+                if (healNature == (HEALSTATE)5)
+                    healNature = HEALSTATE.NONE;
             }
         }
         else if(isTimerCard)
@@ -327,58 +348,54 @@ public class Testtouch : MonoBehaviour
     {
         if (nature > 5)
         {
-            if (inZoneHauteNature)
+            if (natureState == BARSTATE.HAUTE)
                 ;//victoire nature
             else
-                inZoneHauteNature = true;
+                natureState = BARSTATE.HAUTE;
         }
         else if (nature > -4)
         {
-            inZoneHauteNature = false;
-            inZoneMediumNature = false;
-            inZoneBasseNature = false;
+            natureState = BARSTATE.NONE;
         }
         else if (nature > -6)
         {
-            if (inZoneMediumNature)
+            if (natureState == BARSTATE.MEDIUM)
                 ;//victoire humain
             else
-                inZoneMediumNature = true;
+                natureState = BARSTATE.MEDIUM;
         }
         else
         {
-            if (inZoneBasseNature)
+            if (natureState == BARSTATE.BASSE)
                 ;//defaite all
             else
-                inZoneBasseNature = true;
+                natureState = BARSTATE.BASSE;
         }
 
-        if (nature > 4)
+        if (humain > 4)
         {
-            if (inZoneHauteHumain)
+            if (humainState == BARSTATE.HAUTE)
                 ;//victoire humain
             else
-                inZoneHauteHumain = true;
+                humainState = BARSTATE.HAUTE;
         }
-        else if (nature > -4)
+        else if (humain > -4)
         {
-            inZoneHauteHumain = false;
-            inZoneMediumHumain = false;
-            inZoneBasseHumain = false;
+            humainState = BARSTATE.NONE;
         }
-        else if (nature > -6)
+        else if (humain > -6)
         {
-            if (inZoneMediumHumain)
+            if (humainState == BARSTATE.MEDIUM)
                 ;//victoire nature
             else
-                inZoneMediumHumain = true;
+                humainState = BARSTATE.MEDIUM;
         }
         else
         {
-            if (inZoneBasseHumain)
+            if (humainState == BARSTATE.BASSE)
                 ;//defaite all
             else
-                inZoneBasseHumain = true;
+                humainState = BARSTATE.BASSE;
         }
     }
 
@@ -395,7 +412,7 @@ public class Testtouch : MonoBehaviour
         if (tag == "P1")
             healNature = HEALSTATE.WAIT;
         else
-            healNature = HEALSTATE.WAIT;
+            healHumain = HEALSTATE.WAIT;
     }
 
 
