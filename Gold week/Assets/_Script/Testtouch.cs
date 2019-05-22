@@ -25,8 +25,11 @@ public class Testtouch : MonoBehaviour
     {
         NONE,
         HAUTE,
+        HAUTET2,
         MEDIUM,
-        BASSE
+        MEDIUMT2,
+        BASSE,
+        BASSET2
     }
 
     SHIELDSTATE shielNature = SHIELDSTATE.NONE;
@@ -35,11 +38,21 @@ public class Testtouch : MonoBehaviour
     HEALSTATE healHumain = HEALSTATE.NONE;
     BARSTATE natureState = BARSTATE.NONE;
     BARSTATE humainState = BARSTATE.NONE;
+    public GameObject shieldN;
+    public GameObject shieldH;
+    public GameObject healN;
+    public GameObject healH;
+    int comptHealN;
+    int comptHealH;
     public static Testtouch game;
     public Image barHumain;
     public Image barNature;
     public Image visuBarHumain;
     public Image visuBarNature;
+    public Image victoireHumain;
+    public Image victoireNature;
+    public Image defaite;
+    public Image victoireCoop;
     List<Transform> collision = new List<Transform>(5);
     List<Transform> toRemove = new List<Transform>();
     Vector2 touchPos;
@@ -86,11 +99,7 @@ public class Testtouch : MonoBehaviour
     void Update()
     {
         UpdateCard();
-        barHumain.fillAmount = (humain+maxHumain) / (maxHumain*2);
-        visuBarHumain.fillAmount = (visuHumain+maxHumain) / (maxHumain*2);
-        barNature.fillAmount = (nature + maxNature) / (maxNature * 2);
-        visuBarNature.fillAmount = (visuNature + maxNature) / (maxNature * 2);
-
+        UpdateBar();
 
         if (Input.touchCount > 0)
         {
@@ -99,43 +108,43 @@ public class Testtouch : MonoBehaviour
             {
 
                 touchPos = Camera.main.ScreenToWorldPoint(myTouches[i].position);
-                    switch (myTouches[i].phase)
-                    {
-                        case TouchPhase.Began:
-                             if (null != Physics2D.OverlapPoint(touchPos) && Physics2D.OverlapPoint(touchPos).name != "Block")
-                             {
-                                 collision.Insert(i, Physics2D.OverlapPoint(touchPos).transform);
-                                 if (collision[i].tag == "P1")
-                                 {
-                                    if (collision[i].position.y < 2)
-                                    {
+                switch (myTouches[i].phase)
+                {
+                    case TouchPhase.Began:
+                        if (null != Physics2D.OverlapPoint(touchPos) && Physics2D.OverlapPoint(touchPos).name != "Block")
+                        {
+                            collision.Insert(i, Physics2D.OverlapPoint(touchPos).transform);
+                            if (collision[i].tag == "P1")
+                            {
+                                if (collision[i].position.y < 2)
+                                {
                                     collision[i].GetComponent<Card>().PlayVisuNeg();
-                                    }
-                                    manager1.noHand.Remove(collision[i]);
-                                    manager1.noHand.Add(collision[i]);
-                                    manager1.hand.Remove(collision[i]);
-                                 }
-                                 else if (collision[i].tag == "P2")
-                                 {
-                                    if (collision[i].position.y > -2)
-                                    {
-                                        collision[i].GetComponent<Card>().PlayVisuNeg();
-                                    }
-                                    manager2.noHand.Remove(collision[i]);
-                                    manager2.noHand.Add(collision[i]);
-                                    manager2.hand.Remove(collision[i]);
-                                 }
-                                collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
+                                }
+                                manager1.noHand.Remove(collision[i]);
+                                manager1.noHand.Add(collision[i]);
+                                manager1.hand.Remove(collision[i]);
+                            }
+                            else if (collision[i].tag == "P2")
+                            {
+                                if (collision[i].position.y > -2)
+                                {
+                                    collision[i].GetComponent<Card>().PlayVisuNeg();
+                                }
+                                manager2.noHand.Remove(collision[i]);
+                                manager2.noHand.Add(collision[i]);
+                                manager2.hand.Remove(collision[i]);
+                            }
+                            collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
                         }
                         else
                         {
                             collision.Insert(i, null);
                         }
-                             break;
+                        break;
 
-                        case TouchPhase.Moved:
+                    case TouchPhase.Moved:
 
-                        if (collision.Count> i)
+                        if (collision.Count > i)
                         {
                             if (collision[i] != null)
                             {
@@ -151,9 +160,9 @@ public class Testtouch : MonoBehaviour
                                 }
                             }
                         }
-                            break;
+                        break;
 
-                        case TouchPhase.Ended:
+                    case TouchPhase.Ended:
 
                         if (collision.Count > i)
                         {
@@ -261,10 +270,10 @@ public class Testtouch : MonoBehaviour
                             else
                                 toRemove.Add(collision[i]);
                         }
-                            break;
+                        break;
 
-                    }
-                
+                }
+
             }
             foreach (var item in toRemove)
             {
@@ -273,6 +282,62 @@ public class Testtouch : MonoBehaviour
             toRemove.Clear();
         }
 
+    }
+
+    private void UpdateBar()
+    {
+        if(humain<0)
+        {
+            barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
+            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -200);
+            
+        }
+        else
+        {
+            barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 200);
+            
+        }
+
+        if (visuHumain<0)
+        {
+            visuBarHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
+            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -200);
+        }
+        else
+        {
+            visuBarHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 200);
+        }
+
+        if(nature<0)
+        {
+            barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
+            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 200);
+            
+        }
+        else
+        {
+            barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -200);
+            
+        }
+
+        if (visuNature < 0)
+        {
+            visuBarNature.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
+            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 200);
+        }
+        else
+        {
+            visuBarNature.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
+            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -200);
+        }
+
+        barHumain.fillAmount = (Mathf.Abs( humain)) / (maxHumain );
+        visuBarHumain.fillAmount = (Mathf.Abs( visuHumain)) / (maxHumain );
+        barNature.fillAmount = (Mathf.Abs( nature) ) / (maxNature );
+        visuBarNature.fillAmount = (Mathf.Abs( visuNature )) / (maxNature );
     }
 
     public void PlayCard()
@@ -298,29 +363,47 @@ public class Testtouch : MonoBehaviour
     {
         if (isTimerCard && timerCard <0)
         {
+            SoundControler._soundControler.PlaySound(SoundControler._soundControler._pioche);
             manager1.PlayCard();
             manager2.PlayCard();
             isTimerCard = false;
             CalculVictory();
             text.text = "Play";
-            if(shielHumain != SHIELDSTATE.NONE)
+            if (shielHumain != SHIELDSTATE.NONE)
+            {
                 shielHumain++;
+                shieldH.SetActive(true);
+            }
             if (shielHumain == (SHIELDSTATE)3)
+            {
                 shielHumain = SHIELDSTATE.NONE;
+                shieldH.SetActive(false);
+            }
             if (shielNature != SHIELDSTATE.NONE)
+            {
                 shielNature++;
+                shieldN.SetActive(true);
+            }
             if (shielNature == (SHIELDSTATE)3)
+            {
                 shielNature = SHIELDSTATE.NONE;
+                shieldN.SetActive(false);
+            }
             if (healHumain != HEALSTATE.NONE)
             {
                 if (healHumain != HEALSTATE.WAIT)
                 {
                     humain++;
                     visuHumain++;
+                    comptHealH--;
+                    healH.transform.GetChild(0).GetComponent<Text>().text = comptHealH.ToString();
                 }
                 healHumain++;
                 if (healHumain == (HEALSTATE)5)
+                {
                     healHumain = HEALSTATE.NONE;
+                    healH.SetActive(false);
+                }
             }
             if (healNature != HEALSTATE.NONE)
             {
@@ -328,10 +411,15 @@ public class Testtouch : MonoBehaviour
                 {
                     nature++;
                     visuNature++;
+                    comptHealN--;
+                    healN.transform.GetChild(0).GetComponent<Text>().text = comptHealN.ToString();
                 }
                 healNature++;
                 if (healNature == (HEALSTATE)5)
+                {
                     healNature = HEALSTATE.NONE;
+                    healN.SetActive(false);
+                }
             }
         }
         else if(isTimerCard)
@@ -349,7 +437,7 @@ public class Testtouch : MonoBehaviour
         if (nature > 5)
         {
             if (natureState == BARSTATE.HAUTE)
-                ;//victoire nature
+                natureState = BARSTATE.HAUTET2;
             else
                 natureState = BARSTATE.HAUTE;
         }
@@ -360,14 +448,14 @@ public class Testtouch : MonoBehaviour
         else if (nature > -6)
         {
             if (natureState == BARSTATE.MEDIUM)
-                ;//victoire humain
+                natureState = BARSTATE.MEDIUMT2;
             else
                 natureState = BARSTATE.MEDIUM;
         }
         else
         {
             if (natureState == BARSTATE.BASSE)
-                ;//defaite all
+                natureState = BARSTATE.BASSET2;
             else
                 natureState = BARSTATE.BASSE;
         }
@@ -375,28 +463,172 @@ public class Testtouch : MonoBehaviour
         if (humain > 4)
         {
             if (humainState == BARSTATE.HAUTE)
-                ;//victoire humain
+                humainState = BARSTATE.HAUTET2;
             else
                 humainState = BARSTATE.HAUTE;
         }
-        else if (humain > -4)
+        else if (humain > -5)
         {
             humainState = BARSTATE.NONE;
         }
-        else if (humain > -6)
+        else if (humain > -7)
         {
             if (humainState == BARSTATE.MEDIUM)
-                ;//victoire nature
+                humainState = BARSTATE.MEDIUMT2;
             else
                 humainState = BARSTATE.MEDIUM;
         }
         else
         {
             if (humainState == BARSTATE.BASSE)
-                ;//defaite all
+                humainState = BARSTATE.BASSET2;
             else
                 humainState = BARSTATE.BASSE;
         }
+
+
+        switch (natureState)
+        {
+            case BARSTATE.NONE:
+                switch (humainState)
+                {
+
+                    case BARSTATE.HAUTET2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        //rien
+                        break;
+
+                }
+                break;
+            case BARSTATE.HAUTE:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        //rien
+                        break;
+                }
+                break;
+
+            case BARSTATE.HAUTET2:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireC() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        VictoireN() ;
+                        break;
+                }
+
+                break;
+            case BARSTATE.MEDIUM:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        //rien
+                        break;
+                }
+
+                break;
+            case BARSTATE.MEDIUMT2:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        Defaite() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        VictoireN() ;
+                        break;
+                }
+
+                break;
+            case BARSTATE.BASSE:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN() ;
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite() ;
+                        break;
+                    default:
+                        //rien
+                        break;
+                }
+
+                break;
+            case BARSTATE.BASSET2:
+
+                Defaite() ;
+
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void VictoireH()
+    {
+        victoireHumain.gameObject.SetActive(true);
+    }
+
+    public void VictoireN()
+    {
+        victoireNature.gameObject.SetActive(true);
+    }
+
+    public void VictoireC()
+    {
+        victoireCoop.gameObject.SetActive(true);
+    }
+
+    public void Defaite()
+    {
+        defaite.gameObject.SetActive(true);
     }
 
     public void ApplyShield(string tag)
@@ -410,9 +642,18 @@ public class Testtouch : MonoBehaviour
     public void ApplyHeal(string tag)
     {
         if (tag == "P1")
+        {
             healNature = HEALSTATE.WAIT;
+            healN.SetActive(true);
+            comptHealN = 3;
+        }
         else
+        {
             healHumain = HEALSTATE.WAIT;
+            healH.SetActive(true);
+            comptHealH = 3;
+
+        }
     }
 
 

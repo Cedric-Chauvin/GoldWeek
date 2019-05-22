@@ -35,11 +35,11 @@ public class Card : MonoBehaviour
         {
             if (transform.position.y < 2)
             {
-                transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime * speed);
+                transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
             }
             else
             {
-                transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * speed);
+                transform.GetChild(0).rotation = Quaternion.Lerp(transform.GetChild(0).rotation, Quaternion.Euler(0, 0, 180), Time.deltaTime * speed);
 
             }
         }

@@ -3,7 +3,10 @@ guid: 78a76a7715a8e6d47a9b452a3b3475b5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _poseCard: {fileID: 8300000, guid: 9094981a3d5334546a741bc6d8ec5f86, type: 3}
+  - _pioche: {fileID: 8300000, guid: 125bb8d752defeb4c9caafc92f8855ce, type: 3}
+  - _music: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

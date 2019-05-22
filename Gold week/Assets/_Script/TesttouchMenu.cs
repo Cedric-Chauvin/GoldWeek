@@ -28,6 +28,7 @@ public class TesttouchMenu : MonoBehaviour
     {
         manager1 = player1.GetComponent<CardManager>();
         manager2 = player2.GetComponent<CardManager>();
+        SoundControler._soundControler.PlaySound(SoundControler._soundControler._pioche);
     }
 
     // Update is called once per frame
@@ -98,6 +99,8 @@ public class TesttouchMenu : MonoBehaviour
                                 int jmin1 = 0;
                                 int jmin2 = 0;
 
+                                SoundControler._soundControler.PlaySound(SoundControler._soundControler._poseCard);
+
                                 if (collision[i].tag == "P1")
                                 {
                                     if (collision[i].position.y < 2)
@@ -132,7 +135,7 @@ public class TesttouchMenu : MonoBehaviour
                                                 manager1.hand.Insert(jmin1 + 1, collision[i]);
                                             else
                                                 manager1.hand.Insert(jmin2 + 1, collision[i]);
-                                            manager2.noHand.Remove(collision[i]);
+                                            manager1.noHand.Remove(collision[i]);
                                         }
                                     }
                                     else
@@ -214,6 +217,26 @@ public class TesttouchMenu : MonoBehaviour
             if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit)
                 Application.Quit();
         }
+        foreach (var item in manager1.noHand)
+        {
+            manager1.hand.Add(item);
+            int index = collision.IndexOf(item);
+            if (index >= 0)
+            {
+                collision[index] = null;
+            }
+        }
+        manager1.noHand.Clear();
+        foreach (var item in manager2.noHand)
+        {
+            manager2.hand.Add(item);
+            int index = collision.IndexOf(item);
+            if (index >= 0)
+            {
+                collision[index] = null;
+            }
+        }
+        manager2.noHand.Clear();
     }
 
 }
