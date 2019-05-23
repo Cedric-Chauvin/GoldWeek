@@ -398,9 +398,11 @@ public class Testtouch : MonoBehaviour
                     comptHealH--;
                     healH.transform.GetChild(0).GetComponent<Text>().text = comptHealH.ToString();
                 }
+                else visuHumain++;
                 healHumain++;
                 if (healHumain == (HEALSTATE)5)
                 {
+                    visuHumain--;
                     healHumain = HEALSTATE.NONE;
                     healH.SetActive(false);
                 }
@@ -413,10 +415,12 @@ public class Testtouch : MonoBehaviour
                     visuNature++;
                     comptHealN--;
                     healN.transform.GetChild(0).GetComponent<Text>().text = comptHealN.ToString();
-                }
+                }else
+                    visuNature++;
                 healNature++;
                 if (healNature == (HEALSTATE)5)
                 {
+                    visuNature--;
                     healNature = HEALSTATE.NONE;
                     healN.SetActive(false);
                 }
@@ -668,6 +672,24 @@ public class Testtouch : MonoBehaviour
         {
             nature += natureValue;
             visuNature += natureValue;
+        }
+    }
+
+    public void PlayVisu(int natureValue, int humainValue, bool positif)
+    {
+        if (positif)
+        {
+            if (shielHumain != SHIELDSTATE.SHIELD || humainValue > 0)
+                visuHumain += humainValue;
+            if (shielNature != SHIELDSTATE.SHIELD || natureValue > 0)
+                visuNature += natureValue;
+        }
+        else
+        {
+            if (shielHumain != SHIELDSTATE.SHIELD || humainValue > 0)
+                visuHumain -= humainValue;
+            if (shielNature != SHIELDSTATE.SHIELD || natureValue > 0)
+                visuNature -= natureValue;
         }
     }
 

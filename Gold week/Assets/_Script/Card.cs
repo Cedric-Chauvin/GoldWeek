@@ -60,14 +60,12 @@ public class Card : MonoBehaviour
 
     public void PlayVisuPos()
     {
-        Testtouch.game.visuHumain += humain;
-        Testtouch.game.visuNature += nature;
+        Testtouch.game.PlayVisu(nature, humain, true);
     }
 
     public void PlayVisuNeg()
     {
-        Testtouch.game.visuHumain -= humain;
-        Testtouch.game.visuNature -= nature;
+        Testtouch.game.PlayVisu(nature, humain, false);
     }
 
     public void PlayCard()
