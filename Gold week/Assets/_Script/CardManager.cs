@@ -25,13 +25,18 @@ public class CardManager : MonoBehaviour
             deck.Add(cards[var]);
             cards.Remove(cards[var]);
         }
-        for(int i =0; i < nbCardInHand; i++)
+        foreach (var item in deck)
+        {
+            cards.Add(item);
+        }
+        for (int i =0; i < nbCardInHand; i++)
         {
             Transform instance = Instantiate(deck[0]);
             instance.tag = transform.name;
             hand.Add(instance);
             deck.Remove(deck[0]);
         }
+
     }
 
     // Update is called once per frame
@@ -181,7 +186,25 @@ public class CardManager : MonoBehaviour
             hand.Add(instance);
             deck.Remove(deck[0]);
         }
-
+        else
+        {
+            nbCard = cards.Count;
+            for (int i = 0; i < nbCard; i++)
+            {
+                int var = Random.Range(0, cards.Count);
+                deck.Add(cards[var]);
+                cards.Remove(cards[var]);
+            }
+            foreach (var item in deck)
+            {
+                cards.Add(item);
+            }
+            Transform instance = Instantiate(deck[0]);
+            instance.tag = transform.name;
+            hand.Add(instance);
+            deck.Remove(deck[0]);
+        }
     }
 
 }
+
