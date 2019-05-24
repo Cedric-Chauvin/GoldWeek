@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Testtouch : MonoBehaviour
 {
@@ -98,6 +99,12 @@ public class Testtouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+
         UpdateCard();
         UpdateBar();
 
@@ -498,7 +505,7 @@ public class Testtouch : MonoBehaviour
                 {
 
                     case BARSTATE.HAUTET2:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                     case BARSTATE.MEDIUMT2:
                         VictoireN() ;
@@ -517,7 +524,7 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                     case BARSTATE.MEDIUMT2:
                         VictoireN() ;
@@ -552,7 +559,7 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                     case BARSTATE.MEDIUMT2:
                         VictoireN() ;
@@ -571,7 +578,7 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                     case BARSTATE.MEDIUMT2:
                         Defaite() ;
@@ -580,7 +587,7 @@ public class Testtouch : MonoBehaviour
                         Defaite() ;
                         break;
                     default:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                 }
 
@@ -590,7 +597,7 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireN() ;
+                        VictoireH() ;
                         break;
                     case BARSTATE.MEDIUMT2:
                         VictoireN() ;
