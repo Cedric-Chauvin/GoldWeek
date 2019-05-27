@@ -26,7 +26,7 @@ public class GooglePlayUIScript : MonoBehaviour
 
     public void UnlockHelloWorld()
     {
-        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_hello_world__1st_achivement);
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_hello_world);
     }
 
     public void IncrementMasterAchivement()

@@ -24,17 +24,17 @@
 
 public static class GPGSIds
 {
-        public const string event_devisepremiumtest = "CgkIyd3Wzt0MEAIQAA"; // <GPGSID>
-        public const string achievement_hello_world__1st_achivement = "CgkIyd3Wzt0MEAIQAQ"; // <GPGSID>
-        public const string achievement_god_bless_america = "CgkIyd3Wzt0MEAIQCw"; // <GPGSID>
         public const string achievement_supernova = "CgkIyd3Wzt0MEAIQDg"; // <GPGSID>
         public const string leaderboard_leaderboardnametest = "CgkIyd3Wzt0MEAIQAg"; // <GPGSID>
-        public const string achievement_let_it_burn = "CgkIyd3Wzt0MEAIQDQ"; // <GPGSID>
+        public const string event_devisepremiumtest = "CgkIyd3Wzt0MEAIQAA"; // <GPGSID>
         public const string achievement_symbiosis = "CgkIyd3Wzt0MEAIQEA"; // <GPGSID>
-        public const string achievement_life_find_always_the_good_way = "CgkIyd3Wzt0MEAIQEQ"; // <GPGSID>
-        public const string achievement_little_step_for_man_big_for_humanity = "CgkIyd3Wzt0MEAIQDw"; // <GPGSID>
-        public const string achievement_master = "CgkIyd3Wzt0MEAIQBA"; // <GPGSID>
         public const string achievement_extinction = "CgkIyd3Wzt0MEAIQDA"; // <GPGSID>
+        public const string achievement_life_find_always_the_good_way = "CgkIyd3Wzt0MEAIQFg"; // <GPGSID>
+        public const string achievement_hello_world = "CgkIyd3Wzt0MEAIQAQ"; // <GPGSID>
+        public const string achievement_master = "CgkIyd3Wzt0MEAIQBA"; // <GPGSID>
+        public const string achievement_god_bless_america = "CgkIyd3Wzt0MEAIQEw"; // <GPGSID>
+        public const string achievement_little_step_for_man_big_for_humanity = "CgkIyd3Wzt0MEAIQFQ"; // <GPGSID>
+        public const string achievement_let_it_burn = "CgkIyd3Wzt0MEAIQFA"; // <GPGSID>
 
 }
 

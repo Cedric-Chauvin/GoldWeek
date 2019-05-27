@@ -445,7 +445,7 @@ public class Testtouch : MonoBehaviour
 
     private void CalculVictory()
     {
-        if (nature > 5)
+        if (nature > 6)
         {
             if (natureState == BARSTATE.HAUTE)
                 natureState = BARSTATE.HAUTET2;
@@ -471,18 +471,18 @@ public class Testtouch : MonoBehaviour
                 natureState = BARSTATE.BASSE;
         }
 
-        if (humain > 4)
+        if (humain > 6)
         {
             if (humainState == BARSTATE.HAUTE)
                 humainState = BARSTATE.HAUTET2;
             else
                 humainState = BARSTATE.HAUTE;
         }
-        else if (humain > -5)
+        else if (humain > -4)
         {
             humainState = BARSTATE.NONE;
         }
-        else if (humain > -7)
+        else if (humain > -6)
         {
             if (humainState == BARSTATE.MEDIUM)
                 humainState = BARSTATE.MEDIUMT2;
@@ -624,29 +624,21 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireH()
     {
-        GooglePlayUIScript.Instance.IncrementMasterAchivement();
-        GooglePlayUIScript.Instance.IncrementStepForMan();
         victoireHumain.gameObject.SetActive(true);
     }
 
     public void VictoireN()
     {
-        GooglePlayUIScript.Instance.IncrementMasterAchivement();
-        GooglePlayUIScript.Instance.UnlockExtinction();
         victoireNature.gameObject.SetActive(true);
     }
 
     public void VictoireC()
     {
-        GooglePlayUIScript.Instance.IncrementMasterAchivement();
-        GooglePlayUIScript.Instance.UnlockSymbiosis();
         victoireCoop.gameObject.SetActive(true);
     }
 
     public void Defaite()
     {
-        GooglePlayUIScript.Instance.IncrementMasterAchivement();
-        GooglePlayUIScript.Instance.UnlockSupernova();
         defaite.gameObject.SetActive(true);
     }
 
