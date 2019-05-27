@@ -213,7 +213,10 @@ public class TesttouchMenu : MonoBehaviour
         if (manager1.noHand.Count == 1 && manager2.noHand.Count == 1)
         {
             if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Play && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Play)
+            {
+                GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_hello_world__1st_achivement);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
             if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit)
                 Application.Quit();
         }
