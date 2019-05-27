@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GooglePlayGamesScript : MonoBehaviour
 {
 
-    private bool _setup = true;
+    private bool _setup = false;
     [SerializeField]
     public Image _iconGooglePlay;
     private Color defaultColor;
@@ -18,7 +18,7 @@ public class GooglePlayGamesScript : MonoBehaviour
         PlayGamesPlatform.Activate();
         defaultColor = _iconGooglePlay.color;
         _iconGooglePlay.color = Color.grey;
-        //SignIn();
+        SignIn();
     }
 
 
