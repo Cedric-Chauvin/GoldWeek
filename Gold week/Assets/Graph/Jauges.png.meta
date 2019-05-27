@@ -104,10 +104,10 @@ TextureImporter:
       name: Jauges_0
       rect:
         serializedVersion: 2
-        x: 2441
-        y: 498
-        width: 347
-        height: 2958
+        x: 0
+        y: 0
+        width: 806
+        height: 2494
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,7 +115,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d90a9c267ce63f642882aeb87a2bcbf6
+      spriteID: bdd2c41f0a9b02341a484472d77642d1
       internalID: 4306384292792242332
       vertices: []
       indices: 
@@ -125,10 +125,10 @@ TextureImporter:
       name: Jauges_1
       rect:
         serializedVersion: 2
-        x: 3571
-        y: 496
-        width: 347
-        height: 2960
+        x: 956
+        y: 0
+        width: 1005
+        height: 2494
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,7 +136,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 051d90101ef47da449add634e0d58238
+      spriteID: 8603f1ba6a89d5147a852d34c79f2fd5
       internalID: 63495503787765751
       vertices: []
       indices: 
