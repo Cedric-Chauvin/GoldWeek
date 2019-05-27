@@ -25,13 +25,13 @@ public class Card : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.tag == "P1")
+        if (transform.tag == "P1")
         {
             if (transform.position.y < 2)
             {
@@ -70,6 +70,18 @@ public class Card : MonoBehaviour
 
     public void PlayCard()
     {
+        switch (this.gameObject.name)
+        {
+            case "Plump":
+                GooglePlayUIScript.Instance.IncrementGodBlessAmerica();
+                break;
+            case "incendie":
+                GooglePlayUIScript.Instance.IncrementLetItBurn();
+                break;
+            case "Evolution":
+                GooglePlayUIScript.Instance.IncrementLifeGoodWay();
+                break;
+        }
         switch (type)
         {
             case CARDTYPE.NORMAL:
