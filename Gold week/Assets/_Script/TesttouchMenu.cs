@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class TesttouchMenu : MonoBehaviour
 {
-    public static TesttouchMenu game;
+    public static TesttouchMenu game { get; private set; }
 
     List<Transform> collision = new List<Transform>(5);
     List<Transform> toRemove = new List<Transform>();
     Vector2 touchPos;
+    [SerializeField]
     public Transform player1;
     CardManager manager1;
+    [SerializeField]
     public Transform player2;
     CardManager manager2;
 
@@ -26,6 +28,17 @@ public class TesttouchMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        #region lecture
+        // Convertir Vector3 en Transform , Car HoldingData ne peux pas stocker un Transform , car il n'hérite pas de MonoBehaviour
+        // et on ne peut pas c
+        // pour stocker le tranform de P1 et P2 dans les changements de scènes on créer à partir de HoldingData
+        //
+        //GameObject t1 = Instantiate(new GameObject(), new Vector3(3.194887f, -0.337866f, -0.2753906f), Quaternion.identity);
+        //GameObject t2 = Instantiate(new GameObject(), new Vector3(3.194887f, -8.36f, -0.2753906f), Quaternion.identity);
+        //
+        //GameObject t1 = Instantiate(new GameObject(), new Vector3(HoldingData.X1, HoldingData.Y1, HoldingData.Z1), Quaternion.identity);
+        //GameObject t2 = Instantiate(new GameObject(), new Vector3(HoldingData.X2, HoldingData.Y2, HoldingData.Z2), Quaternion.identity);
+        #endregion
         manager1 = player1.GetComponent<CardManager>();
         manager2 = player2.GetComponent<CardManager>();
         SoundControler._soundControler.PlaySound(SoundControler._soundControler._pioche);

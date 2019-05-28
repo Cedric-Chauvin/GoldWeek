@@ -70,15 +70,15 @@ public class Card : MonoBehaviour
 
     public void PlayCard()
     {
-        switch (this.gameObject.name)
+        switch (this.gameObject.name)   
         {
-            case "Plump":
+            case "Plump(Clone)":
                 GooglePlayUIScript.Instance.IncrementGodBlessAmerica();
                 break;
-            case "incendie":
+            case "incendie(Clone)":
                 GooglePlayUIScript.Instance.IncrementLetItBurn();
                 break;
-            case "Evolution":
+            case "Evolution(Clone)":
                 GooglePlayUIScript.Instance.IncrementLifeGoodWay();
                 break;
         }

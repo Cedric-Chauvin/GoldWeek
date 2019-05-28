@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9339594c21494647951cf74b4f8aa66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsTxt: {fileID: 0}
 --- !u!114 &548259057197823973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cc6d6a0adbacf7479036efbac8d55c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _setup: 0
+  canvas: {fileID: 0}
   _iconGooglePlay: {fileID: 0}
 --- !u!114 &548259057197823972
 MonoBehaviour:

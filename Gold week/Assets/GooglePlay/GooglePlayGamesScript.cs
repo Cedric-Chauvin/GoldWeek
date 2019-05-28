@@ -17,7 +17,6 @@ public class GooglePlayGamesScript : MonoBehaviour
 
     void Start()
     {
-        Debug.LogWarning("Start");
         if (!PlayGamesPlatform.Instance.IsAuthenticated())
         {
             _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
@@ -33,11 +32,6 @@ public class GooglePlayGamesScript : MonoBehaviour
             _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
             defaultColor = _iconGooglePlay.color;
         }
-        DontDestroyOnLoad(this.gameObject);
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
     }
 
 
@@ -65,14 +59,6 @@ public class GooglePlayGamesScript : MonoBehaviour
 
     public void Update()
     {
-        if (SceneManager.GetActiveScene().name == "Cedric")
-        {
-            canvas.SetActive(false);
-        }
-        if (SceneManager.GetActiveScene().name == "Menu")
-        {
-            canvas.SetActive(true);
-        }
         if (_iconGooglePlay == null && SceneManager.GetActiveScene().name == "Menu")
         {
             _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
