@@ -624,21 +624,29 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireH()
     {
+        GooglePlayUIScript.Instance.IncrementMasterAchivement();
+        GooglePlayUIScript.Instance.IncrementStepForMan();
         victoireHumain.gameObject.SetActive(true);
     }
 
     public void VictoireN()
     {
+        GooglePlayUIScript.Instance.IncrementMasterAchivement();
+        GooglePlayUIScript.Instance.UnlockExtinction();
         victoireNature.gameObject.SetActive(true);
     }
 
     public void VictoireC()
     {
+        GooglePlayUIScript.Instance.IncrementMasterAchivement();
+        GooglePlayUIScript.Instance.UnlockSymbiosis();
         victoireCoop.gameObject.SetActive(true);
     }
 
     public void Defaite()
     {
+        GooglePlayUIScript.Instance.IncrementMasterAchivement();
+        GooglePlayUIScript.Instance.UnlockSupernova();
         defaite.gameObject.SetActive(true);
     }
 

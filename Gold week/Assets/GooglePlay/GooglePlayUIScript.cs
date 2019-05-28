@@ -10,7 +10,6 @@ public class GooglePlayUIScript : MonoBehaviour
         Instance = this;
     }
 
-    [SerializeField]
     private Text pointsTxt;
 
     public void GetPoint()
@@ -26,7 +25,7 @@ public class GooglePlayUIScript : MonoBehaviour
 
     public void UnlockHelloWorld()
     {
-        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_hello_world);
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_hello_world__1st_achivement);
     }
 
     public void IncrementMasterAchivement()

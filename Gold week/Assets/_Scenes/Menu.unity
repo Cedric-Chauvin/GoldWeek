@@ -325,7 +325,7 @@ GameObject:
   - component: {fileID: 205763323}
   m_Layer: 5
   m_Name: LogInOutButton
-  m_TagString: Untagged
+  m_TagString: GooglePlayImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -783,6 +783,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1183953394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 548259057197823970, guid: b577d3877b41e7d4cb36e28c02c64ca8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1241891206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1183953398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183953394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e203449404e6949ab3b66a66a092ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1494499570}
+  player2: {fileID: 1745666321}
 --- !u!1001 &1241891206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -859,7 +879,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _iconGooglePlay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 205763324}
+    - target: {fileID: 548259057197823973, guid: b577d3877b41e7d4cb36e28c02c64ca8,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 2026452343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b577d3877b41e7d4cb36e28c02c64ca8, type: 3}
 --- !u!1 &1287766639
@@ -947,7 +972,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1241891206}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1183953394}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cc6d6a0adbacf7479036efbac8d55c3, type: 3}
@@ -1035,7 +1060,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1869901748}
+      - m_Target: {fileID: 1183953398}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -1304,7 +1329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1869901748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,9 +1370,10 @@ GameObject:
   - component: {fileID: 2026452346}
   - component: {fileID: 2026452345}
   - component: {fileID: 2026452344}
+  - component: {fileID: 2026452348}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: GooglePlayImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1433,3 +1459,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2026452348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026452343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a3c0eddaef9e742964a8db5b840c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

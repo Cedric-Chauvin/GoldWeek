@@ -2,23 +2,42 @@
 using GooglePlayGames.BasicApi;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GooglePlayGamesScript : MonoBehaviour
 {
-
-    private bool _setup = false;
     [SerializeField]
-    public Image _iconGooglePlay;
-    private Color defaultColor;
+    private  bool _setup = false;
+    [SerializeField]
+    public GameObject canvas;
+    [SerializeField]
+    public  Image _iconGooglePlay;
+    private  Color defaultColor;
+    public static GooglePlayGamesScript Instance { get; private set; }
 
     void Start()
     {
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-        PlayGamesPlatform.InitializeInstance(config);
-        PlayGamesPlatform.Activate();
-        defaultColor = _iconGooglePlay.color;
-        _iconGooglePlay.color = Color.grey;
-        SignIn();
+        Debug.LogWarning("Start");
+        if (!PlayGamesPlatform.Instance.IsAuthenticated())
+        {
+            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+            PlayGamesPlatform.InitializeInstance(config);
+            PlayGamesPlatform.Activate();
+            defaultColor = _iconGooglePlay.color;
+            _iconGooglePlay.color = Color.grey;
+            //SignIn();
+        }
+        if(PlayGamesPlatform.Instance.IsAuthenticated())
+        {
+            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
+            defaultColor = _iconGooglePlay.color;
+        }
+        DontDestroyOnLoad(this.gameObject);
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
 
@@ -30,13 +49,13 @@ public class GooglePlayGamesScript : MonoBehaviour
     public void SignInOutButton()
     {
         _setup = !_setup;
-        if(!_setup && !PlayGamesPlatform.Instance.IsAuthenticated())
+        if (!_setup && !PlayGamesPlatform.Instance.IsAuthenticated())
         {
             SignIn();
             _iconGooglePlay.color = defaultColor;
             Debug.LogWarning("log");
         }
-        else if(_setup && PlayGamesPlatform.Instance.IsAuthenticated())
+        else if (_setup && PlayGamesPlatform.Instance.IsAuthenticated())
         {
             SignOut();
             _iconGooglePlay.color = Color.grey;
@@ -44,6 +63,29 @@ public class GooglePlayGamesScript : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "Cedric")
+        {
+            canvas.SetActive(false);
+        }
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            canvas.SetActive(true);
+        }
+        if (_iconGooglePlay == null && SceneManager.GetActiveScene().name == "Menu")
+        {
+            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
+        }
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            SceneManager.LoadScene("Menu");
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            SceneManager.LoadScene("Cedric");
+        }
+    }
 
 
     void SignIn()
@@ -79,5 +121,4 @@ public class GooglePlayGamesScript : MonoBehaviour
         Social.ShowLeaderboardUI();
     }
     #endregion /Leaderboards
-
 }
