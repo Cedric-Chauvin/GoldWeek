@@ -232,6 +232,7 @@ public class TesttouchMenu : MonoBehaviour
             }
             if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit)
                 Application.Quit();
+            //if(manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option)
         }
         foreach (var item in manager1.noHand)
         {

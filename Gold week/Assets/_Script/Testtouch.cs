@@ -374,7 +374,7 @@ public class Testtouch : MonoBehaviour
             manager1.PlayCard();
             manager2.PlayCard();
             isTimerCard = false;
-            CalculVictory();
+
             text.text = "Play";
             if (shielHumain != SHIELDSTATE.NONE)
             {
@@ -432,6 +432,7 @@ public class Testtouch : MonoBehaviour
                     healN.SetActive(false);
                 }
             }
+            CalculVictory();
         }
         else if(isTimerCard)
         {
