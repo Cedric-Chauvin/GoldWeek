@@ -72,10 +72,10 @@ public class TesttouchMenu : MonoBehaviour
                                     manager2.noHand.Add(collision[i]);
                                     manager2.hand.Remove(collision[i]);
                                  }
-                                if (collision[i].tag == "HiddenStar")
-                                    ;//unclockStar
-                                else
-                                 collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
+                            if (collision[i].tag == "HiddenStar")
+                                GooglePlayUIScript.Instance.UnlockYoureMyStar();
+                            else
+                                collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
                             }
                             else
                             {

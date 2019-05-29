@@ -298,20 +298,20 @@ public class Testtouch : MonoBehaviour
 
     private void UpdateBar()
     {
-        if(humain<0)
+        if (humain < 0)
         {
             barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
             barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -175);
-            
+
         }
         else
         {
             barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
             barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 175);
-            
+
         }
 
-        if (visuHumain<0)
+        if (visuHumain < 0)
         {
             visuBarHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
             visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -175);
@@ -322,17 +322,17 @@ public class Testtouch : MonoBehaviour
             visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 175);
         }
 
-        if(nature<0)
+        if (nature < 0)
         {
             barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
             barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 175);
-            
+
         }
         else
         {
             barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
             barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -175);
-            
+
         }
 
         if (visuNature < 0)
@@ -346,10 +346,10 @@ public class Testtouch : MonoBehaviour
             visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -175);
         }
 
-        barHumain.fillAmount = (Mathf.Abs( humain)) / (maxHumain );
-        visuBarHumain.fillAmount = (Mathf.Abs( visuHumain)) / (maxHumain );
-        barNature.fillAmount = (Mathf.Abs( nature) ) / (maxNature );
-        visuBarNature.fillAmount = (Mathf.Abs( visuNature )) / (maxNature );
+        barHumain.fillAmount = (Mathf.Abs(humain)) / (maxHumain);
+        visuBarHumain.fillAmount = (Mathf.Abs(visuHumain)) / (maxHumain);
+        barNature.fillAmount = (Mathf.Abs(nature)) / (maxNature);
+        visuBarNature.fillAmount = (Mathf.Abs(visuNature)) / (maxNature);
     }
 
     public void PlayCard()
@@ -361,7 +361,7 @@ public class Testtouch : MonoBehaviour
         }
     }
 
-    public void RemoveCard(Transform collider,bool ispreview)
+    public void RemoveCard(Transform collider, bool ispreview)
     {
         int index = collision.IndexOf(collider);
         if (index >= 0)
@@ -376,11 +376,15 @@ public class Testtouch : MonoBehaviour
 
     private void UpdateCard()
     {
-        if (isTimerCard && timerCard <0)
+        if (isTimerCard && timerCard < 0)
         {
             SoundControler._soundControler.PlaySound(SoundControler._soundControler._pioche);
+            if (manager1.noHand.Count == 0 && manager2.noHand.Count == 0)
+                GooglePlayUIScript.Instance.UnlockIndecision();
             manager1.PlayCard();
             manager2.PlayCard();
+
+
             isTimerCard = false;
 
             text.text = "Play";
@@ -430,7 +434,8 @@ public class Testtouch : MonoBehaviour
                     visuNature++;
                     comptHealN--;
                     healN.transform.GetChild(0).GetComponent<Text>().text = comptHealN.ToString();
-                }else
+                }
+                else
                     visuNature++;
                 healNature++;
                 if (healNature == (HEALSTATE)5)
@@ -442,9 +447,9 @@ public class Testtouch : MonoBehaviour
             }
             CalculVictory();
         }
-        else if(isTimerCard)
+        else if (isTimerCard)
         {
-            timerCard-=Time.deltaTime;
+            timerCard -= Time.deltaTime;
             text.text = timerCard.ToString();
         }
     }
@@ -536,13 +541,13 @@ public class Testtouch : MonoBehaviour
                 {
 
                     case BARSTATE.HAUTET2:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                     case BARSTATE.MEDIUMT2:
-                        VictoireN() ;
+                        VictoireN();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
                         //rien
@@ -555,13 +560,13 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                     case BARSTATE.MEDIUMT2:
-                        VictoireN() ;
+                        VictoireN();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
                         //rien
@@ -574,13 +579,13 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireC() ;
+                        VictoireC();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
-                        VictoireN() ;
+                        VictoireN();
                         break;
                 }
 
@@ -590,13 +595,13 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                     case BARSTATE.MEDIUMT2:
-                        VictoireN() ;
+                        VictoireN();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
                         //rien
@@ -609,16 +614,16 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                     case BARSTATE.MEDIUMT2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                 }
 
@@ -628,13 +633,13 @@ public class Testtouch : MonoBehaviour
                 switch (humainState)
                 {
                     case BARSTATE.HAUTET2:
-                        VictoireH() ;
+                        VictoireH();
                         break;
                     case BARSTATE.MEDIUMT2:
-                        VictoireN() ;
+                        VictoireN();
                         break;
                     case BARSTATE.BASSET2:
-                        Defaite() ;
+                        Defaite();
                         break;
                     default:
                         //rien
@@ -644,7 +649,7 @@ public class Testtouch : MonoBehaviour
                 break;
             case BARSTATE.BASSET2:
 
-                Defaite() ;
+                Defaite();
                 break;
 
             case BARSTATE.SYMBIO:
@@ -696,7 +701,7 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireH()
     {
-        if(_myTimerZephyr <= 300f)
+        if (_myTimerZephyr <= 300f)
         {
             GooglePlayUIScript.Instance.UnlockZephyr();
         }
@@ -763,14 +768,14 @@ public class Testtouch : MonoBehaviour
     }
 
 
-    public void ChangeBar(int natureValue,int humainValue)
+    public void ChangeBar(int natureValue, int humainValue)
     {
         if (shielHumain != SHIELDSTATE.SHIELD || humainValue > 0)
         {
             humain += humainValue;
             visuHumain += humainValue;
         }
-        if (shielNature != SHIELDSTATE.SHIELD || natureValue >0)
+        if (shielNature != SHIELDSTATE.SHIELD || natureValue > 0)
         {
             nature += natureValue;
             visuNature += natureValue;
