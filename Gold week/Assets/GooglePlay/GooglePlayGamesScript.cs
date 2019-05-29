@@ -14,8 +14,8 @@ public class GooglePlayGamesScript : MonoBehaviour
     public  Image _iconGooglePlay1;
     [SerializeField]
     public Image _iconGooglePlay2;
-    private  Color defaultColor1;
-    private Color defaultColor2;
+    private static Color defaultColor1;
+    private static Color defaultColor2;
     public static GooglePlayGamesScript Instance { get; private set; }
 
     void Start()
@@ -37,8 +37,8 @@ public class GooglePlayGamesScript : MonoBehaviour
         {
             _iconGooglePlay1 = canvas.transform.GetChild(0).GetComponent<Image>();
             _iconGooglePlay2 = canvas.transform.GetChild(1).GetComponent<Image>();
-            _iconGooglePlay1.color = defaultColor1;
-            _iconGooglePlay2.color = defaultColor2;
+            _iconGooglePlay1.color = Color.white;
+            _iconGooglePlay2.color = Color.white;
         }
     }
 

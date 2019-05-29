@@ -1385,6 +1385,16 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 2026452343}
+    - target: {fileID: 548259057197823973, guid: b577d3877b41e7d4cb36e28c02c64ca8,
+        type: 3}
+      propertyPath: _iconGooglePlay1
+      value: 
+      objectReference: {fileID: 156314439}
+    - target: {fileID: 548259057197823973, guid: b577d3877b41e7d4cb36e28c02c64ca8,
+        type: 3}
+      propertyPath: _iconGooglePlay2
+      value: 
+      objectReference: {fileID: 205763324}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b577d3877b41e7d4cb36e28c02c64ca8, type: 3}
 --- !u!1 &1287766639

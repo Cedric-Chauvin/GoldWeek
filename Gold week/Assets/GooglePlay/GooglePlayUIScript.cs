@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GooglePlayUIScript : MonoBehaviour
 {
     public static GooglePlayUIScript Instance { get; private set; }
@@ -103,5 +103,17 @@ public class GooglePlayUIScript : MonoBehaviour
     public void UpdatePointsText()
     {
         pointsTxt.text = ScoreAchivementManagerScript.Counter.ToString();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.Keypad1))
+        {
+            SceneManager.LoadScene(0);
+        }
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
