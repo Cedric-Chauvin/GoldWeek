@@ -53,7 +53,6 @@ public class TesttouchMenu : MonoBehaviour
             Touch[] myTouches = Input.touches;
             for (int i = 0; i < myTouches.Length; i++)
             {
-
                 touchPos = Camera.main.ScreenToWorldPoint(myTouches[i].position);
                     switch (myTouches[i].phase)
                     {
@@ -73,13 +72,17 @@ public class TesttouchMenu : MonoBehaviour
                                     manager2.noHand.Add(collision[i]);
                                     manager2.hand.Remove(collision[i]);
                                  }
-                                collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
-                        }
-                        else
-                        {
+                                if (collision[i].tag == "HiddenStar")
+                                    ;//unclockStar
+                                else
+                                 collision[i].GetChild(0).GetComponent<SpriteRenderer>().sortingOrder++;
+                            }
+                            else
+                            {
                             collision.Insert(i, null);
-                        }
-                             break;
+                            }
+                            Debug.Log(collision[i]);
+                        break;
 
                         case TouchPhase.Moved:
 
