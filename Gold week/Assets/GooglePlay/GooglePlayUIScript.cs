@@ -38,28 +38,28 @@ public class GooglePlayUIScript : MonoBehaviour
         GooglePlayGamesScript.IncrementAchievement(GPGSIds.achievement_god_bless_america, 10);
     }
 
-    /*public void UnlockStar()
+    public void UnlockYoureMyStar()
     {
-        GooglePlayGamesScript.UnlockAchievement();
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_youre_my_star);
     }
-    
-       public void Unlock()
-       {
-            GooglePlayGamesScript.UnlockAchievement();
-       }
 
-        public void Unlock()
-       {
-            GooglePlayGamesScript.UnlockAchievement();
-       }
+    public void UnlockZephyr()
+    {
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_zephyr);
+    }
 
-        public void Unlock()
-       {
-            GooglePlayGamesScript.UnlockAchievement();
-       }
-         
-         
-         */
+    public void UnlockIndecision()
+    {
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_indecision);
+    }
+
+    public void UnlockChampion()
+    {
+        GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_champion);
+    }
+
+
+
     public void UnlockExtinction()
     {
         GooglePlayGamesScript.UnlockAchievement(GPGSIds.achievement_extinction);

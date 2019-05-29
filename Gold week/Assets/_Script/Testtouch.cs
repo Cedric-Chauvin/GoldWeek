@@ -75,6 +75,8 @@ public class Testtouch : MonoBehaviour
     private float timerCard;
     public float tempsPLay;
 
+    public float _myTimerZephyr = 0;
+
 
     public Text text;
 
@@ -101,6 +103,7 @@ public class Testtouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _myTimerZephyr += Time.deltaTime;
         if (Input.GetKey(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);
@@ -693,6 +696,11 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireH()
     {
+        if(_myTimerZephyr <= 300f)
+        {
+            GooglePlayUIScript.Instance.UnlockZephyr();
+        }
+        GooglePlayUIScript.Instance.UnlockChampion();
         GooglePlayUIScript.Instance.IncrementMasterAchivement();
         GooglePlayUIScript.Instance.IncrementStepForMan();
         victoireHumain.gameObject.SetActive(true);
@@ -700,6 +708,11 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireN()
     {
+        if (_myTimerZephyr <= 300f)
+        {
+            GooglePlayUIScript.Instance.UnlockZephyr();
+        }
+        GooglePlayUIScript.Instance.UnlockChampion();
         GooglePlayUIScript.Instance.IncrementMasterAchivement();
         GooglePlayUIScript.Instance.UnlockExtinction();
         victoireNature.gameObject.SetActive(true);
@@ -707,6 +720,11 @@ public class Testtouch : MonoBehaviour
 
     public void VictoireC()
     {
+        if (_myTimerZephyr <= 300f)
+        {
+            GooglePlayUIScript.Instance.UnlockZephyr();
+        }
+        GooglePlayUIScript.Instance.UnlockChampion();
         GooglePlayUIScript.Instance.IncrementMasterAchivement();
         GooglePlayUIScript.Instance.UnlockSymbiosis();
         victoireCoop.gameObject.SetActive(true);
