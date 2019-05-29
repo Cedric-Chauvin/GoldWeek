@@ -11,26 +11,34 @@ public class GooglePlayGamesScript : MonoBehaviour
     [SerializeField]
     public GameObject canvas;
     [SerializeField]
-    public  Image _iconGooglePlay;
-    private  Color defaultColor;
+    public  Image _iconGooglePlay1;
+    [SerializeField]
+    public Image _iconGooglePlay2;
+    private  Color defaultColor1;
+    private Color defaultColor2;
     public static GooglePlayGamesScript Instance { get; private set; }
 
     void Start()
     {
         if (!PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
+            _iconGooglePlay1 = canvas.transform.GetChild(0).GetComponent<Image>();
+            _iconGooglePlay2 = canvas.transform.GetChild(1).GetComponent<Image>();
             PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
             PlayGamesPlatform.InitializeInstance(config);
             PlayGamesPlatform.Activate();
-            defaultColor = _iconGooglePlay.color;
-            _iconGooglePlay.color = Color.grey;
+            defaultColor1 = _iconGooglePlay1.color;
+            _iconGooglePlay1.color = Color.grey;
+            defaultColor2 = _iconGooglePlay2.color;
+            _iconGooglePlay2.color = Color.grey;
             //SignIn();
         }
         if(PlayGamesPlatform.Instance.IsAuthenticated())
         {
-            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
-            defaultColor = _iconGooglePlay.color;
+            _iconGooglePlay1 = canvas.transform.GetChild(0).GetComponent<Image>();
+            _iconGooglePlay2 = canvas.transform.GetChild(1).GetComponent<Image>();
+            _iconGooglePlay1.color = defaultColor1;
+            _iconGooglePlay2.color = defaultColor2;
         }
     }
 
@@ -46,30 +54,16 @@ public class GooglePlayGamesScript : MonoBehaviour
         if (!_setup && !PlayGamesPlatform.Instance.IsAuthenticated())
         {
             SignIn();
-            _iconGooglePlay.color = defaultColor;
+            _iconGooglePlay1.color = defaultColor1;
+            _iconGooglePlay2.color = defaultColor2;
             Debug.LogWarning("log");
         }
         else if (_setup && PlayGamesPlatform.Instance.IsAuthenticated())
         {
             SignOut();
-            _iconGooglePlay.color = Color.grey;
+            _iconGooglePlay1.color = Color.grey;
+            _iconGooglePlay2.color = Color.grey;
             Debug.LogWarning("Disc");
-        }
-    }
-
-    public void Update()
-    {
-        if (_iconGooglePlay == null && SceneManager.GetActiveScene().name == "Menu")
-        {
-            _iconGooglePlay = canvas.transform.GetChild(0).GetComponent<Image>();
-        }
-        if (Input.GetKey(KeyCode.Keypad1))
-        {
-            SceneManager.LoadScene("Menu");
-        }
-        if (Input.GetKey(KeyCode.Keypad2))
-        {
-            SceneManager.LoadScene("Cedric");
         }
     }
 
