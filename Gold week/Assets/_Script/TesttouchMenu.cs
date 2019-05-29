@@ -17,7 +17,7 @@ public class TesttouchMenu : MonoBehaviour
     [SerializeField]
     public Transform player2;
     CardManager manager2;
-
+    public GameObject Guide;
 
     private void Awake()
     {
@@ -232,7 +232,8 @@ public class TesttouchMenu : MonoBehaviour
             }
             if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Quit)
                 Application.Quit();
-            //if(manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option)
+            if (manager1.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option && manager2.noHand[0].GetComponent<CardMenu>().type == CardMenu.MENUCARDTYPE.Option)
+                Guide.SetActive(true);
         }
         foreach (var item in manager1.noHand)
         {

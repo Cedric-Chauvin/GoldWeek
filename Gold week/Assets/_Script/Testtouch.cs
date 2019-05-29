@@ -349,8 +349,11 @@ public class Testtouch : MonoBehaviour
 
     public void PlayCard()
     {
-        isTimerCard = true;
-        timerCard = tempsPLay;
+        if (!isTimerCard)
+        {
+            isTimerCard = true;
+            timerCard = tempsPLay;
+        }
     }
 
     public void RemoveCard(Transform collider,bool ispreview)
