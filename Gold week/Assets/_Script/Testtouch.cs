@@ -27,6 +27,8 @@ public class Testtouch : MonoBehaviour
         NONE,
         HAUTE,
         HAUTET2,
+        SYMBIO,
+        SYMBIOT2,
         MEDIUM,
         MEDIUMT2,
         BASSE,
@@ -296,49 +298,49 @@ public class Testtouch : MonoBehaviour
         if(humain<0)
         {
             barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
-            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -200);
+            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -175);
             
         }
         else
         {
             barHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 200);
+            barHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 175);
             
         }
 
         if (visuHumain<0)
         {
             visuBarHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
-            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -200);
+            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, -175);
         }
         else
         {
             visuBarHumain.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 200);
+            visuBarHumain.rectTransform.localPosition = new Vector3(barHumain.rectTransform.localPosition.x, 175);
         }
 
         if(nature<0)
         {
             barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
-            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 200);
+            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 175);
             
         }
         else
         {
             barNature.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -200);
+            barNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -175);
             
         }
 
         if (visuNature < 0)
         {
             visuBarNature.rectTransform.rotation = Quaternion.Euler(0, 0, 180);
-            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 200);
+            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, 175);
         }
         else
         {
             visuBarNature.rectTransform.rotation = Quaternion.Euler(0, 0, 0);
-            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -200);
+            visuBarNature.rectTransform.localPosition = new Vector3(barNature.rectTransform.localPosition.x, -175);
         }
 
         barHumain.fillAmount = (Mathf.Abs( humain)) / (maxHumain );
@@ -456,6 +458,17 @@ public class Testtouch : MonoBehaviour
             else
                 natureState = BARSTATE.HAUTE;
         }
+        else if (nature > 1)
+        {
+            natureState = BARSTATE.NONE;
+        }
+        else if (nature > -2)
+        {
+            if (natureState == BARSTATE.SYMBIO)
+                natureState = BARSTATE.SYMBIOT2;
+            else
+                natureState = BARSTATE.SYMBIO;
+        }
         else if (nature > -4)
         {
             natureState = BARSTATE.NONE;
@@ -481,6 +494,17 @@ public class Testtouch : MonoBehaviour
                 humainState = BARSTATE.HAUTET2;
             else
                 humainState = BARSTATE.HAUTE;
+        }
+        else if (humain > 1)
+        {
+            humainState = BARSTATE.NONE;
+        }
+        else if (humain > -2)
+        {
+            if (humainState == BARSTATE.SYMBIO)
+                humainState = BARSTATE.SYMBIOT2;
+            else
+                humainState = BARSTATE.SYMBIO;
         }
         else if (humain > -4)
         {
@@ -618,6 +642,47 @@ public class Testtouch : MonoBehaviour
             case BARSTATE.BASSET2:
 
                 Defaite() ;
+                break;
+
+            case BARSTATE.SYMBIO:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireH();
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN();
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite();
+                        break;
+                    default:
+                        //rien
+                        break;
+                }
+                break;
+
+            case BARSTATE.SYMBIOT2:
+
+                switch (humainState)
+                {
+                    case BARSTATE.HAUTET2:
+                        VictoireH();
+                        break;
+                    case BARSTATE.MEDIUMT2:
+                        VictoireN();
+                        break;
+                    case BARSTATE.BASSET2:
+                        Defaite();
+                        break;
+                    case BARSTATE.SYMBIOT2:
+                        VictoireC();
+                        break;
+                    default:
+                        //rien
+                        break;
+                }
 
                 break;
             default:
