@@ -459,7 +459,7 @@ public class Testtouch : MonoBehaviour
 
     private void CalculVictory()
     {
-        if (nature > 6)
+        if (nature > 5)
         {
             if (natureState == BARSTATE.HAUTE)
                 natureState = BARSTATE.HAUTET2;
@@ -477,11 +477,11 @@ public class Testtouch : MonoBehaviour
             else
                 natureState = BARSTATE.SYMBIO;
         }
-        else if (nature > -4)
+        else if (nature > -5)
         {
             natureState = BARSTATE.NONE;
         }
-        else if (nature > -6)
+        else if (nature > -7)
         {
             if (natureState == BARSTATE.MEDIUM)
                 natureState = BARSTATE.MEDIUMT2;
@@ -496,7 +496,7 @@ public class Testtouch : MonoBehaviour
                 natureState = BARSTATE.BASSE;
         }
 
-        if (humain > 6)
+        if (humain > 5)
         {
             if (humainState == BARSTATE.HAUTE)
                 humainState = BARSTATE.HAUTET2;
@@ -514,11 +514,11 @@ public class Testtouch : MonoBehaviour
             else
                 humainState = BARSTATE.SYMBIO;
         }
-        else if (humain > -4)
+        else if (humain > -5)
         {
             humainState = BARSTATE.NONE;
         }
-        else if (humain > -6)
+        else if (humain > -7)
         {
             if (humainState == BARSTATE.MEDIUM)
                 humainState = BARSTATE.MEDIUMT2;
