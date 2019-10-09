@@ -472,7 +472,7 @@ public class Testtouch : MonoBehaviour
         }
         else if (nature > -2)
         {
-            if (natureState == BARSTATE.SYMBIO)
+            if (natureState == BARSTATE.SYMBIO || natureState == BARSTATE.SYMBIOT2)
                 natureState = BARSTATE.SYMBIOT2;
             else
                 natureState = BARSTATE.SYMBIO;
@@ -509,7 +509,7 @@ public class Testtouch : MonoBehaviour
         }
         else if (humain > -2)
         {
-            if (humainState == BARSTATE.SYMBIO)
+            if (humainState == BARSTATE.SYMBIO || humainState == BARSTATE.SYMBIOT2)
                 humainState = BARSTATE.SYMBIOT2;
             else
                 humainState = BARSTATE.SYMBIO;

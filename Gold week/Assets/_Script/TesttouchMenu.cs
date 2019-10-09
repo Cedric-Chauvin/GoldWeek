@@ -240,6 +240,7 @@ public class TesttouchMenu : MonoBehaviour
         }
         foreach (var item in manager1.noHand)
         {
+            item.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder--;
             manager1.hand.Add(item);
             int index = collision.IndexOf(item);
             if (index >= 0)
@@ -250,6 +251,7 @@ public class TesttouchMenu : MonoBehaviour
         manager1.noHand.Clear();
         foreach (var item in manager2.noHand)
         {
+            item.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder--;
             manager2.hand.Add(item);
             int index = collision.IndexOf(item);
             if (index >= 0)
